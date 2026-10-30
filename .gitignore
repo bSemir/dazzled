@@ -1,0 +1,17 @@
+.next/
+out/
+node_modules/
+.DS_Store
+**/.DS_Store
+.pnpm-store/
+data/
+backups/
+*.db
+*.db-shm
+*.db-wal
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+coverage/
+dist/

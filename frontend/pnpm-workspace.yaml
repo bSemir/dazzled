@@ -1,0 +1,10 @@
+packages:
+  - .
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+
+overrides:
+  browserslist: ^4.28.7
+  baseline-browser-mapping: ^2.11.0
