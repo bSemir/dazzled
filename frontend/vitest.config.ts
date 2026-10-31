@@ -1,3 +1,4 @@
+// Configure the browser-like test environment and test file discovery.
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitest/config'
 

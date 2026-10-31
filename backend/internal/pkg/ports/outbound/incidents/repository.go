@@ -1,3 +1,4 @@
+// Package incidents defines persistence operations required by incident use cases.
 package incidents
 
 import (

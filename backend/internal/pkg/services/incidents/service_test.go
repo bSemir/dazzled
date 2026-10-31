@@ -1,3 +1,4 @@
+// Package incidents tests normalization and validation of incident submissions.
 package incidents
 
 import (

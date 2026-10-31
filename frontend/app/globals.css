@@ -1,3 +1,4 @@
+/* Define global colors, typography, layout, and shared responsive styling. */
 @import './leaderboard-styles.css';
 @import 'tailwindcss';
 @import 'tw-animate-css';

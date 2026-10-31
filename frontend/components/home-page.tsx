@@ -1,3 +1,4 @@
+// Manage incident reporting, aggregate stats, and the browser-only personal counter.
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -14,6 +15,7 @@ const emptyStats: Stats = { today: 0, total: 0, filtered_count: 0, brands: [], v
 const reportCountStorageKey = 'dazzled.successful-reports'
 
 function readPersonalReportCount() {
+  // Browser storage can be disabled, so failure falls back to a zeroed novelty counter.
   try {
     const count = Number(window.localStorage.getItem(reportCountStorageKey))
     return Number.isSafeInteger(count) && count >= 0 ? count : 0
@@ -87,6 +89,7 @@ export function HomePage() {
   }, [])
 
   useEffect(() => {
+    // Load only public aggregates for the selected period; individual incidents stay private.
     let active = true
     void requestStats(tab)
       .then((result) => { if (active) setStats(result) })
@@ -100,6 +103,7 @@ export function HomePage() {
     try {
       const response = await fetch('/api/incidents', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ vehicle_type: vehicleType, brand, location, severity, local_hour: localHour }) })
       if (!response.ok) throw new Error('Your report could not be saved. Please try again.')
+      // Keep this personal tally in local storage only; it is not a server score.
       const nextPersonalReportCount = Math.max(personalReportCount, readPersonalReportCount()) + 1
       setPersonalReportCount(nextPersonalReportCount)
       try { window.localStorage.setItem(reportCountStorageKey, String(nextPersonalReportCount)) } catch { /* Keep the session-only count if browser storage is unavailable. */ }

@@ -1,3 +1,4 @@
+// Package leaderboard manages signed game sessions, score validation, and rankings.
 package leaderboard
 
 import "errors"

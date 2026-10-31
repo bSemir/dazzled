@@ -1,3 +1,4 @@
+// Keep shared button variants and native button props in one component.
 import { Button as ButtonPrimitive } from '@base-ui/react/button'
 import { cva, type VariantProps } from 'class-variance-authority'
 

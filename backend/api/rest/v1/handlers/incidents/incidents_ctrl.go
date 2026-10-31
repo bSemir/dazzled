@@ -1,3 +1,4 @@
+// Package incidents adapts incident HTTP requests to the incident service.
 package incidents
 
 import (

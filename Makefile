@@ -1,3 +1,4 @@
+// Provide common setup, development, test, lint, and deployment commands.
 SHELL := /bin/sh
 GO ?= go
 PNPM ?= pnpm

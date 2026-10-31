@@ -1,3 +1,4 @@
+// Run the canvas driving game, audio controls, and score submission in the browser.
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -190,6 +191,7 @@ export function DrivePage() {
     let dazzleUntil = 0
     let spaceHeld = false
     let frame = 0
+    // Normalize movement to 60 Hz so refresh rate does not change game difficulty.
     let lastFrameAt = performance.now()
     let nextFlashFrame = 45
     let raf = 0
@@ -361,6 +363,7 @@ export function DrivePage() {
     setStartingGame(true)
     setLeaderboardError('')
     try {
+      // A fresh server-issued token binds the eventual score to this run's start time.
       const response = await fetch('/api/leaderboard/start', { method: 'POST' })
       if (!response.ok) throw new Error('A verified run could not be started. Please try again.')
       const data = await response.json() as { game_token: string }

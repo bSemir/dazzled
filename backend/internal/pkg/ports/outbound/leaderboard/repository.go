@@ -1,3 +1,4 @@
+// Package leaderboard defines persistence operations required by game and score use cases.
 package leaderboard
 
 import (

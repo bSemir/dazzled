@@ -1,3 +1,4 @@
+// Package core provides HTTP middleware, health checks, API routes, and static-file serving.
 package core
 
 import (
@@ -49,6 +50,7 @@ func health(writer http.ResponseWriter, _ *http.Request) {
 
 func readiness(db *sql.DB) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
+		// Execute a bounded query so readiness checks detect an unusable database.
 		ctx, cancel := context.WithTimeout(request.Context(), time.Second)
 		defer cancel()
 		var migrationCount int
@@ -63,6 +65,7 @@ func readiness(db *sql.DB) http.HandlerFunc {
 
 func securityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		// Keep these headers on API errors and static pages alike by wrapping the full router.
 		writer.Header().Set("X-Content-Type-Options", "nosniff")
 		writer.Header().Set("Referrer-Policy", "strict-origin-when-cross-origin")
 		writer.Header().Set("X-Frame-Options", "DENY")

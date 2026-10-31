@@ -1,3 +1,4 @@
+// Package migrations embeds and transactionally applies versioned SQLite schema changes.
 package migrations
 
 import (

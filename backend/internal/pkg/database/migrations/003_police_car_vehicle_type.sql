@@ -1,3 +1,4 @@
+-- Allow police cars under the incident vehicle-type constraint.
 CREATE TABLE incidents_new (
     id INTEGER PRIMARY KEY,
     vehicle_type TEXT NOT NULL CHECK(vehicle_type IN ('Hatchback','Sedan','SUV / crossover','Coupe','Wagon / estate','Pickup truck','Van','Minivan','Bus','Motorcycle','Scooter','Bicycle','Police car','Other')),

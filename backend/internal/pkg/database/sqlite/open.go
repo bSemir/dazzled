@@ -1,3 +1,4 @@
+// Package sqlite opens the application database with required durability and safety settings.
 package sqlite
 
 import (

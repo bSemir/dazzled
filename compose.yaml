@@ -1,3 +1,4 @@
+# Run the app with a persistent SQLite volume for local Docker use.
 services:
   dazzled:
     build: .

@@ -1,3 +1,4 @@
+// Package sqlite implements incident and leaderboard persistence using SQLite.
 package sqlite
 
 import (
@@ -74,6 +75,7 @@ func (r *Repository) Statistics(ctx context.Context, period string) (domain.Stat
 }
 
 func (r *Repository) localHours(ctx context.Context, cutoff string) ([]domain.HourlyCount, error) {
+	// Return only hourly aggregates; public statistics never expose individual reports.
 	hours := make([]domain.HourlyCount, 24)
 	for hour := range hours {
 		hours[hour].Hour = hour
@@ -169,6 +171,7 @@ func (r *Repository) ConsumeGame(ctx context.Context, nonce string, now time.Tim
 	if usedAtNS.Valid {
 		return time.Time{}, leaderboardport.ErrGameSessionUnavailable
 	}
+	// Claim the token in the same transaction so concurrent submissions cannot reuse it.
 	result, err := tx.ExecContext(ctx, `UPDATE leaderboard_game_sessions SET used_at_ns = ? WHERE nonce = ? AND used_at_ns IS NULL`, now.UnixNano(), nonce)
 	if err != nil {
 		return time.Time{}, fmt.Errorf("mark game session used: %w", err)

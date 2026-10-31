@@ -1,3 +1,4 @@
+// Generate and share satirical citations locally in the browser.
 'use client'
 
 import { useState } from 'react'

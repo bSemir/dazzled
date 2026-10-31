@@ -1,3 +1,4 @@
+// Package core provides HTTP middleware, health checks, API routes, and static-file serving.
 package core
 
 import (
@@ -56,6 +57,7 @@ func (limiter *writeRateLimiter) handler(next http.Handler) http.Handler {
 }
 
 func (limiter *writeRateLimiter) clientIP(request *http.Request) string {
+	// Forwarded headers are attacker-controlled unless the deployment proxy replaces them.
 	if limiter.trustProxyHeaders {
 		forwardedFor := request.Header.Get("X-Forwarded-For")
 		if forwardedFor != "" {
@@ -79,6 +81,7 @@ func normalizeRateLimitIP(ip net.IP) string {
 	if ipv4 := ip.To4(); ipv4 != nil {
 		return ipv4.String()
 	}
+	// Group IPv6 privacy addresses by subnet so rotation cannot bypass the limiter.
 	mask := net.CIDRMask(64, 128)
 	return (&net.IPNet{IP: ip.Mask(mask), Mask: mask}).String()
 }
@@ -87,6 +90,7 @@ func (limiter *writeRateLimiter) allow(key [32]byte, now time.Time) (bool, time.
 	limiter.mu.Lock()
 	defer limiter.mu.Unlock()
 
+	// Prune inactive clients first so the bounded table does not retain stale entries.
 	for trackedKey, timestamps := range limiter.requests {
 		if len(timestamps) == 0 || now.Sub(timestamps[len(timestamps)-1]) >= writeRateWindow {
 			delete(limiter.requests, trackedKey)
@@ -105,6 +109,7 @@ func (limiter *writeRateLimiter) allow(key [32]byte, now time.Time) (bool, time.
 		limiter.requests[keyString] = active
 		return false, writeRateWindow - now.Sub(active[0])
 	}
+	// Evict the least recently active identity when the in-memory cap is reached.
 	if len(timestamps) == 0 && len(limiter.requests) >= maxTrackedRateLimits {
 		var oldestKey string
 		var oldestActivity time.Time

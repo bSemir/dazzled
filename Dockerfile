@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1.7
+# Build the static frontend and Go server into one minimal runtime image.
 FROM node:22-alpine AS frontend
 WORKDIR /src
 RUN corepack enable

@@ -1,3 +1,4 @@
+-- Create the original incident and leaderboard tables.
 CREATE TABLE incidents (
     id INTEGER PRIMARY KEY,
     vehicle_type TEXT NOT NULL CHECK(vehicle_type IN ('Hatchback','Sedan','SUV','Pickup / truck','Van','Motorbike','Bicycle')),

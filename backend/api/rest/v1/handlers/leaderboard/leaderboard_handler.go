@@ -1,3 +1,4 @@
+// Package leaderboard adapts game-session and score requests to the leaderboard service.
 package leaderboard
 
 import (

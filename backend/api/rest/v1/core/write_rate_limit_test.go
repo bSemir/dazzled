@@ -1,3 +1,4 @@
+// Package core tests HTTP middleware behavior and abuse-control limits.
 package core
 
 import (

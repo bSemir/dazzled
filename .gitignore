@@ -1,3 +1,4 @@
+# Exclude local secrets, generated files, and runtime data from Git.
 .next/
 out/
 node_modules/

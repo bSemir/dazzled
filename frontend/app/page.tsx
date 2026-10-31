@@ -1,3 +1,4 @@
+// Compose the home view inside the shared navigation and footer.
 import { SiteShell } from '@/components/site-shell'
 import { HomePage } from '@/components/home-page'
 

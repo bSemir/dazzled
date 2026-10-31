@@ -1,3 +1,4 @@
+// Provide the navigation and footer shared by application pages.
 import Link from 'next/link'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {

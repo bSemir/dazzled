@@ -1,3 +1,4 @@
+// Package config loads runtime settings from environment variables with safe defaults.
 package config
 
 import (

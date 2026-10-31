@@ -1,3 +1,4 @@
+// Package incidents validates incident submissions and coordinates incident use cases.
 package incidents
 
 import "errors"

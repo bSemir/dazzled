@@ -1,3 +1,4 @@
+// Package incidents defines use cases exposed to incident HTTP handlers.
 package incidents
 
 import (

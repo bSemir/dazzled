@@ -1,3 +1,4 @@
+// Package leaderboard tests score validation, token use, and elapsed-time checks.
 package leaderboard
 
 import (

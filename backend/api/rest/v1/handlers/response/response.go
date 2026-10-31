@@ -1,3 +1,4 @@
+// Package response centralizes bounded JSON decoding and consistent HTTP responses.
 package response
 
 import (
@@ -17,6 +18,7 @@ func DecodeJSON(writer http.ResponseWriter, request *http.Request, destination a
 	if err != nil || mediaType != "application/json" {
 		return ErrUnsupportedMediaType
 	}
+	// Bound input size and reject extra fields so writes stay small and predictable.
 	request.Body = http.MaxBytesReader(writer, request.Body, maxJSONBodyBytes)
 	decoder := json.NewDecoder(request.Body)
 	decoder.DisallowUnknownFields()

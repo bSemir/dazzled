@@ -1,3 +1,4 @@
+-- Persist one-use game sessions to prevent score-token replay.
 CREATE TABLE leaderboard_game_sessions (
     nonce TEXT PRIMARY KEY CHECK(length(nonce) <= 64),
     started_at_ns INTEGER NOT NULL,

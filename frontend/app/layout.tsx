@@ -1,3 +1,4 @@
+// Define shared document metadata and the HTML shell for every route.
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 

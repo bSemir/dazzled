@@ -1,3 +1,4 @@
+// Exercise user-facing workflows without requiring a running backend.
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
 import userEvent from '@testing-library/user-event'

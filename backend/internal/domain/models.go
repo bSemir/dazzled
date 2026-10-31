@@ -1,3 +1,4 @@
+// Package domain holds data types shared across application features and adapters.
 package domain
 
 type Incident struct {

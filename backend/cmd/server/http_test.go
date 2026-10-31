@@ -1,3 +1,4 @@
+// Package main tests the assembled server through its public HTTP routes.
 package main
 
 import (

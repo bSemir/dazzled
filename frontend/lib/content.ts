@@ -1,3 +1,4 @@
+// Centralize report choices and satirical copy used across the interface.
 export const brands = ['BMW', 'Audi', 'Mercedes-Benz', 'Tesla', 'Ford', 'Volkswagen', 'Toyota', 'Honda', 'Hyundai', 'Kia', 'Nissan', 'Mazda', 'Subaru', 'Volvo', 'Škoda', 'Peugeot', 'Renault', 'Opel', 'Dacia', 'Jeep', 'Porsche', 'Lexus', 'Land Rover', 'Other', 'Unknown', "Aftermarket 'xenon' bulbs from a webshop"]
 export const vehicleTypes = ['Hatchback', 'Sedan', 'SUV / crossover', 'Coupe', 'Wagon / estate', 'Pickup truck', 'Van', 'Minivan', 'Bus', 'Motorcycle', 'Scooter', 'Bicycle', 'Police car', 'Other']
 

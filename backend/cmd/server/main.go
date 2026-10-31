@@ -1,3 +1,4 @@
+// Package main wires app dependencies and manages startup, serving, and graceful shutdown.
 package main
 
 import (

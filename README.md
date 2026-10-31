@@ -2,6 +2,8 @@
 
 A satirical public record for blinding headlights. The app includes an incident report form, aggregated incident leaderboards, a Peak Blindness chart (shown after 30 timed reports), a browser-local Retinal Damage Meter, a citation generator, and the passenger-mode Blind Drive game with a public score board.
 
+Visit the live app at [dazzled-4g7p.onrender.com](https://dazzled-4g7p.onrender.com/).
+
 ## Stack and layout
 
 - `frontend/app/`, `frontend/components/`, `frontend/lib/`: Next.js static React application with TypeScript.

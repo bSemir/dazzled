@@ -1,4 +1,5 @@
 #!/bin/sh
+# Create, validate, upload, and locally rotate SQLite online backups.
 set -eu
 umask 077
 

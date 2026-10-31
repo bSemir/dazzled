@@ -1,3 +1,4 @@
+// Package leaderboard defines use cases exposed to leaderboard HTTP handlers.
 package leaderboard
 
 import (

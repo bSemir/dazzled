@@ -1,3 +1,4 @@
+// Package leaderboard manages signed game sessions, score validation, and rankings.
 package leaderboard
 
 import (
@@ -44,6 +45,7 @@ func (s *Service) StartGame(ctx context.Context) (string, error) {
 	if len(s.tokenSecret) < sha256.Size {
 		return "", errors.New("game token signing key must contain at least 32 bytes")
 	}
+	// The random nonce is stored server-side; the signature prevents clients inventing sessions.
 	nonceBytes := make([]byte, gameTokenNonceBytes)
 	if _, err := rand.Read(nonceBytes); err != nil {
 		return "", fmt.Errorf("generate game nonce: %w", err)
@@ -77,6 +79,7 @@ func (s *Service) Submit(ctx context.Context, score domain.Score, token string) 
 	if elapsed < 0 || elapsed > maxGameDuration {
 		return ErrInvalidGameToken
 	}
+	// Allow a small safety margin for browser timing while bounding impossible score claims.
 	maximumDistance := elapsed.Seconds()*maxDistancePerSecond + gameDistanceSafetyRoom
 	if score.Distance > maximumDistance {
 		return ErrScoreExceedsElapsedTime
